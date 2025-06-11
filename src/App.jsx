@@ -1,7 +1,15 @@
+import React from "react";
+import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
+import CardPage from "./pages/CardPage";
+
 const App = () => {
   return (
-    <div className="text-3xl font-bold underline decoration-pink-600">
-      Hello Salamm
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/cards" element={<CardPage />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 };
