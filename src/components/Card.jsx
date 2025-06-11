@@ -298,7 +298,7 @@ const Card = () => {
   return (
     <div className="min-h-screen p-6" style={{ backgroundColor: "#1e1e1e" }}>
       <div className="flex flex-col md:flex-row items-center justify-between mb-8">
-        <img src={loqo} alt="Logo" className="h-16 mb-4 md:mb-0" />
+        <img src={loqo} alt="Logo" className="h-11 mb-4 md:mb-0" />
         <div className="flex space-x-4">
           <button
             onClick={() => setActiveFilter(null)}
