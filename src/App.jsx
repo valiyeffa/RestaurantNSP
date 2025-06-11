@@ -1,9 +1,9 @@
 const App = () => {
   return (
     <div className="text-3xl font-bold underline decoration-pink-600">
-      Hello
+      Hello Salamm
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
