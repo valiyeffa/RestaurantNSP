@@ -1,167 +1,187 @@
+import { ConfigProvider, Slider } from 'antd';
+import { BsFillBasketFill } from "react-icons/bs";
+import loqo from "../assets/images/loqo.png";
+import { useState } from "react";
+import { Search, ChevronDown, Heart, ShoppingCart } from 'lucide-react';
+import { MdOutlineArrowOutward } from 'react-icons/md';
+import MenuCard from '../components/MenuCard';
+
 const Menu = () => {
+    const [priceRange, setPriceRange] = useState([10, 60]);
+    const [selectedSort, setSelectedSort] = useState('Default sorting');
+
+    const products = [
+        {
+            id: 1,
+            name: 'Artisan Donuts',
+            description: 'Delicious artisan donuts made with love.',
+            price: 12.00,
+            originalPrice: null,
+            image: 'https://wordpress.iqonic.design/product/wp/gericht/wp-content/uploads/2022/01/Asian-dumplings.jpg',
+            onSale: false,
+            category: 'Bakery'
+        },
+        {
+            id: 2,
+            name: 'Premium Coffee',
+            description: 'Delicious artisan donuts made with love.',
+            price: 24.00,
+            originalPrice: 32.00,
+            image: 'https://wordpress.iqonic.design/product/wp/gericht/wp-content/uploads/2022/01/black-coffe.jpg',
+            onSale: true,
+            category: 'Beverages'
+        },
+        {
+            id: 3,
+            name: 'Bamboo Whisk Set',
+            description: 'Delicious artisan donuts made with love.',
+            price: 18.00,
+            originalPrice: null,
+            image: 'https://wordpress.iqonic.design/product/wp/gericht/wp-content/uploads/2022/01/13.jpg',
+            onSale: false,
+            category: 'Kitchen'
+        }
+    ];
+
+    const popularItems = [
+        {
+            name: 'Ice Cream',
+            priceRange: '$18.00 - $45.00',
+            image: 'https://wordpress.iqonic.design/product/wp/gericht/wp-content/uploads/2022/01/Cones-with-ice-cream-300x300.jpg'
+        },
+    ];
+
     return (
-        <div className="p-6 space-y-8 bg-gray-50 min-h-screen">
-            {/* 1. Breakpoint-lər */}
-            <section className="bg-white p-6 rounded-lg shadow ">
-                <h2 className="text-2xl font-bold mb-4">1. Breakpoint-lər</h2>
-                <div className="bg-blue-100 sm:bg-green-100 md:bg-yellow-100 lg:bg-red-100 xl:bg-purple-100 p-4 rounded">
-                    <p className="font-semibold ">Cari breakpoint:</p>
-                    <span className="sm:hidden">📱 XS (0-425px)</span>
-                    <span className="hidden sm:inline md:hidden">📱 SM (425px+)</span>
-                    <span className="hidden md:inline lg:hidden">💻 MD (768px+)</span>
-                    <span className="hidden lg:inline xl:hidden">💻 LG (1024px+)</span>
-                    <span className="hidden xl:inline">🖥️ XL (1280px+)</span>
-                </div>
-                <div className="mt-4 text-sm">
-                    <p><code>sm:</code> 425px+</p>
-                    <p><code>md:</code> 768px+</p>
-                    <p><code>lg:</code> 1024px+</p>
-                    <p><code>xl:</code> 1280px+</p>
-                    <p><code>2xl:</code> 1536px+</p>
-                </div>
-            </section>
+        <div className="min-h-screen bg-[#0C0C0C]" >
+            <header className="flex flex-col bg-[#161616] ">
+                <div className="border-b border-[#2E2E2E]">
+                    <nav className="container flex justify-between py-4 items-center md:px-8">
+                        <img src={loqo} alt="logo" className="h-10 md:mb-0" />
 
-            {/* 2. Layout Responsivlik */}
-            <section className="bg-white p-6 rounded-lg shadow">
-                <h2 className="text-2xl font-bold mb-4">2. Layout Responsivlik</h2>
-
-                {/* Grid responsive */}
-                <div className="mb-6">
-                    <h3 className="text-lg font-semibold mb-2">Grid Sistema:</h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                        <div className="bg-blue-200 p-4 rounded">Element 1</div>
-                        <div className="bg-blue-300 p-4 rounded">Element 2</div>
-                        <div className="bg-blue-400 p-4 rounded">Element 3</div>
-                        <div className="bg-blue-500 p-4 rounded text-white">Element 4</div>
-                    </div>
-                    <p className="text-sm mt-2 text-gray-600">
-                        Mobil: 1 sütun, SM: 2 sütun, LG: 3 sütun, XL: 4 sütun
-                    </p>
-                </div>
-
-                {/* Flexbox responsive */}
-                <div className="mb-6">
-                    <h3 className="text-lg font-semibold mb-2">Flexbox:</h3>
-                    <div className="flex flex-col md:flex-row gap-4">
-                        <div className="flex-1 bg-green-200 p-4 rounded">Sol hissə</div>
-                        <div className="flex-1 bg-green-300 p-4 rounded">Sağ hissə</div>
-                    </div>
-                    <p className="text-sm mt-2 text-gray-600">
-                        Mobil: şaquli, Desktop: üfüqi
-                    </p>
-                </div>
-            </section>
-
-            {/* 3. Text və Spacing */}
-            <section className="bg-white p-6 rounded-lg shadow">
-                <h2 className="text-2xl font-bold mb-4">3. Text və Spacing</h2>
-
-                <div className="space-y-4">
-                    {/* Responsive text sizes */}
-                    <div>
-                        <h3 className="text-lg font-semibold mb-2">Text ölçüləri:</h3>
-                        <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl bg-yellow-100 p-3 rounded">
-                            Bu mətn responsive ölçü dəyişir
-                        </p>
-                        <code className="text-xs bg-gray-100 p-1 rounded">text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl</code>
-                    </div>
-
-                    {/* Responsive padding/margin */}
-                    <div>
-                        <h3 className="text-lg font-semibold mb-2">Padding/Margin:</h3>
-                        <div className="p-2 sm:p-4 md:p-6 lg:p-8 xl:p-10 bg-red-100 rounded">
-                            <div className="bg-red-300 p-2 rounded">Responsive padding</div>
+                        <div className="flex items-center">
+                            <button type="button" className="btn position-relative text-white">
+                                <BsFillBasketFill />
+                                <span className="position-absolute top-0 start-100 translate-middle badge text-black rounded-pill bg-[#DCCA87]">
+                                    0
+                                    <span className="visually-hidden">Unread messages</span>
+                                </span>
+                            </button>
                         </div>
-                        <code className="text-xs bg-gray-100 p-1 rounded">p-2 sm:p-4 md:p-6 lg:p-8 xl:p-10</code>
+                    </nav>
+                </div>
+                <div className="container flex justify-center items-center py-5 md:px-8">
+                    <div className="flex items-center">
+                        <p className="text-3xl text-white font-menu">Menu</p>
                     </div>
                 </div>
-            </section>
+            </header>
 
-            {/* 4. Hide/Show elementlər */}
-            <section className="bg-white p-6 rounded-lg shadow">
-                <h2 className="text-2xl font-bold mb-4">4. Hide/Show Elementlər</h2>
+            <div className="container mx-auto px-4 py-8 ">
+                <div className="flex flex-col lg:flex-row gap-8 my-5">
+                    <div className="lg:w-1/4 ">
+                        <div className="relative mb-8 bg-black">
+                            <input
+                                type="text"
+                                placeholder="Search"
+                                className="w-full border-b pl-4 pr-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-500"
+                            />
+                            <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#dcca87] font-bold w-4 h-4" />
+                        </div>
 
-                <div className="space-y-4">
-                    <div className="block sm:hidden bg-blue-100 p-3 rounded">
-                        📱 Yalnız mobil-də görünür
-                    </div>
-                    <div className="hidden sm:block md:hidden bg-green-100 p-3 rounded">
-                        💻 Yalnız SM breakpoint-də görünür
-                    </div>
-                    <div className="hidden md:block bg-purple-100 p-3 rounded">
-                        🖥️ MD və yuxarıda görünür
-                    </div>
-                </div>
+                        <div className="mb-8 bg-black p-3">
+                            <h3 className="font-menu mb-6 text-white">Filter</h3>
 
-                <div className="mt-4 text-sm space-y-1">
-                    <p><code>hidden</code> - gizlət</p>
-                    <p><code>block</code> - göstər</p>
-                    <p><code>sm:hidden</code> - SM-dən başlayaraq gizlət</p>
-                    <p><code>md:block</code> - MD-dən başlayaraq göstər</p>
-                </div>
-            </section>
+                            <div className="mb-6">
+                                <label className="block text-gray-300 mb-3">
+                                    Price: ${priceRange[0]} — ${priceRange[1]}
+                                </label>
+                                <div className="relative">
+                                    <ConfigProvider
+                                        theme={{
+                                            token: {
+                                                colorPrimaryBorderHover: '#dcca87',
+                                            },
+                                            components: {
+                                                Slider: {
+                                                    handleActiveColor: "white",
+                                                    dotActiveBorderColor: 'white',
+                                                    handleActiveOutlineColor: 'white',
+                                                    handleColor: 'white',
+                                                    trackBg: '#dcca87',
+                                                    handleSize: 4,
+                                                    handleSizeHover: 6,
+                                                    railSize: 3
+                                                },
+                                            },
+                                        }}>
+                                        <Slider
+                                            range
+                                            min={10}
+                                            max={60}
+                                            value={priceRange}
+                                            onChange={setPriceRange}
+                                        />
+                                        <p className='text-white'>${priceRange[0]} - ${priceRange[1]}</p>
+                                        {priceRange[0] !== 10 || priceRange[1] !== 60 ? (
+                                            <button type='button' onClick={() => {
+                                                setPriceRange([10, 60]);
+                                                setAppliedPrice([10, 60]);
+                                            }} className='btn mx-2 text-white' style={{ border: 'none' }}> Reset <MdOutlineArrowOutward /></button>
+                                        ) : null}
+                                        <button type='button' onClick={() => setAppliedPrice(priceRange)} className='btn px-4 py-1 text-white' style={{ border: 'none' }}>Apply <MdOutlineArrowOutward /></button>
+                                    </ConfigProvider>
+                                </div>
+                            </div>
+                        </div>
 
-            {/* 5. Responsive Max-Width */}
-            <section className="bg-white p-6 rounded-lg shadow">
-                <h2 className="text-2xl font-bold mb-4">5. Responsive Max-Width</h2>
-
-                <div className="max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto bg-indigo-100 p-4 rounded">
-                    <p className="text-center">
-                        Bu konteyner responsive max-width istifadə edir
-                    </p>
-                    <p className="text-xs text-center mt-2 text-gray-600">
-                        max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl
-                    </p>
-                </div>
-            </section>
-
-            {/* 6. Menu nümunəsi */}
-            <section className="bg-white p-6 rounded-lg shadow">
-                <h2 className="text-2xl font-bold mb-4">6. Responsive Menu Nümunəsi</h2>
-
-                <nav className="bg-gray-800 text-white rounded-lg">
-                    {/* Desktop menu */}
-                    <div className="hidden md:flex items-center justify-between p-4">
-                        <div className="text-xl font-bold">Logo</div>
-                        <div className="flex space-x-6">
-                            <a href="#" className="hover:text-blue-400">Ana səhifə</a>
-                            <a href="#" className="hover:text-blue-400">Haqqımızda</a>
-                            <a href="#" className="hover:text-blue-400">Xidmətlər</a>
-                            <a href="#" className="hover:text-blue-400">Əlaqə</a>
+                        <div className='bg-[black] p-3'>
+                            <h3 className="text-xl text-white font-semibold mb-6">Popular Items</h3>
+                            {popularItems.map((item, index) => (
+                                <div key={index} className="flex items-center gap-4 p-3 hover:bg-[#161616] transition-colors">
+                                    <img
+                                        src={item.image}
+                                        alt={item.name}
+                                        className="w-19 h-23 object-cover bg-[#161616]"
+                                    />
+                                    <div>
+                                        <p className="text-[17px] mb-1 text-white">{item.name}</p>
+                                        <p className="text-gray-400 text-sm">{item.priceRange}</p>
+                                        <button className="bg-yellow-500 text-black px-3 py-1 rounded-lg font-semibold hover:bg-yellow-400 transition-colors flex items-center gap-2">
+                                            <ShoppingCart className="w-4 h-4" />
+                                            Add
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
 
-                    {/* Mobile menu */}
-                    <div className="md:hidden p-4">
-                        <div className="flex items-center justify-between mb-4">
-                            <div className="text-xl font-bold">Logo</div>
-                            <button className="text-2xl">☰</button>
+                    <div className="lg:w-3/4">
+                        <div className="flex justify-between items-center mb-8">
+                            <p className="text-gray-400">Showing 1–{products.length} of {products.length} results</p>
+                            <div className="relative">
+                                <select
+                                    value={selectedSort}
+                                    onChange={(e) => setSelectedSort(e.target.value)}
+                                    className="bg-black border border-gray-700 px-4 py-2  text-white appearance-none focus:outline-none focus:border-yellow-500"
+                                >
+                                    <option>Default sorting</option>
+                                    <option>Price: Low to High</option>
+                                    <option>Price: High to Low</option>
+                                    <option>Newest First</option>
+                                </select>
+                                <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+                            </div>
                         </div>
-                        <div className="space-y-2">
-                            <a href="#" className="block py-2 hover:bg-gray-700 rounded px-2">Ana səhifə</a>
-                            <a href="#" className="block py-2 hover:bg-gray-700 rounded px-2">Haqqımızda</a>
-                            <a href="#" className="block py-2 hover:bg-gray-700 rounded px-2">Xidmətlər</a>
-                            <a href="#" className="block py-2 hover:bg-gray-700 rounded px-2">Əlaqə</a>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {products.map((item) => (
+                                <MenuCard product={item} key={item.id} />
+                            ))}
                         </div>
                     </div>
-                </nav>
-            </section>
-
-            {/* 7. Responsive Card Layout */}
-            <section className="bg-white p-6 rounded-lg shadow">
-                <h2 className="text-2xl font-bold mb-4">7. Responsive Card Layout</h2>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-                    {[1, 2, 3, 4, 5, 6].map(num => (
-                        <div key={num} className="bg-gradient-to-br from-blue-100 to-blue-200 p-4 sm:p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
-                            <h3 className="text-lg sm:text-xl font-semibold mb-2">Card {num}</h3>
-                            <p className="text-sm sm:text-base text-gray-600">
-                                Bu responsive card-dır. Mobil-də 1 sütun, tablet-də 2 sütun, desktop-də 3 sütun göstərir.
-                            </p>
-                        </div>
-                    ))}
                 </div>
-            </section>
+            </div>
         </div>
     )
 }
